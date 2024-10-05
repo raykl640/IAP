@@ -18,3 +18,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['username'] = $user['username'];
                 header('Location: novels.php');
                 exit;
+            } else {
+                $message = 'Invalid username or password.';
+            }
+        } catch (PDOException $e) {
+            $message = 'Login failed: ' . $e->getMessage();
+        }
+    }
+}
+?>

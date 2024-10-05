@@ -11,3 +11,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (empty($username) || empty($password)) {
         $message = 'Username and password are required.';
     } else {
+        try {
+            $user = $userManagement->loginUser($username, $password);
+            if ($user) {
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+                header('Location: novels.php');
+                exit;

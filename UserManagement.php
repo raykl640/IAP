@@ -24,3 +24,16 @@ class UserManagement {
         $sql = "INSERT INTO users (username, email, password, two_factor_secret) VALUES (?, ?, ?, ?)";
         try {
             $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$username, $email, $hashedPassword, $twoFactorSecret]);
+            return $this->pdo->lastInsertId();
+        } catch (\PDOException $e) {
+            throw new \PDOException("User registration failed: " . $e->getMessage(), (int)$e->getCode());
+        }
+    }
+
+    public function loginUser($username, $password) {
+        try {
+            $sql = "SELECT * FROM users WHERE username = ?";
+            $stmt = $this->pdo->prepare($sql);
+            $stmt->execute([$username]);
+            $user = $stmt->fetch();

@@ -33,3 +33,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Register - Novel Enthusiasts</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
+<body>
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Register for Novel Enthusiasts</h2>
+        <?php if ($message): ?>
+            <div class="alert alert-info"><?php echo $message; ?></div>
+        <?php endif; ?>
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <form method="post" action="">

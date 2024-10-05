@@ -57,3 +57,10 @@ class UserManagement {
         } catch (\PDOException $e) {
             throw new \PDOException("Fetching popular novels failed: " . $e->getMessage(), (int)$e->getCode());
         }
+    }
+
+    private function generateTwoFactorSecret() {
+        return strval(random_int(100000, 999999));
+    }
+}
+?>

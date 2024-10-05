@@ -32,3 +32,22 @@ $novels = $userManagement->getPopularNovels();
                             <th>Year Published</th>
                         </tr>
                     </thead>
+                    <tbody>
+                        <?php foreach ($novels as $novel): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($novel['title']); ?></td>
+                                <td><?php echo htmlspecialchars($novel['author']); ?></td>
+                                <td><?php echo htmlspecialchars($novel['year_published']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+                <div class="text-center mt-4">
+                    <a href="index.php" class="btn btn-primary">Back to Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

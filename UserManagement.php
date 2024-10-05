@@ -51,3 +51,9 @@ class UserManagement {
 
     public function getPopularNovels() {
         try {
+            $sql = "SELECT * FROM popular_novels ORDER BY year_published DESC";
+            $stmt = $this->pdo->query($sql);
+            return $stmt->fetchAll();
+        } catch (\PDOException $e) {
+            throw new \PDOException("Fetching popular novels failed: " . $e->getMessage(), (int)$e->getCode());
+        }

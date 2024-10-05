@@ -37,3 +37,17 @@ class UserManagement {
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute([$username]);
             $user = $stmt->fetch();
+
+            
+            if ($user && password_verify($password, $user['password'])) {
+                return $user;
+            }
+        } catch (\PDOException $e) {
+            throw new \PDOException("Login failed: " . $e->getMessage(), (int)$e->getCode());
+        }
+
+        return false;
+    }
+
+    public function getPopularNovels() {
+        try {
